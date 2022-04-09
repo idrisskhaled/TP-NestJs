@@ -19,6 +19,7 @@ import { UpdateResult } from 'typeorm/query-builder/result/UpdateResult';
 import { DeleteResult } from 'typeorm/query-builder/result/DeleteResult';
 import { SearchTodoDto } from './dto/search-todo.dto';
 import { TodoStatusEnum } from "./enums/todo-status.enum";
+import { SelectQueryBuilder } from 'typeorm';
 @Controller({
   path: 'todo',
   version: '2',
@@ -36,10 +37,10 @@ export class TodoDBController {
   ): Promise<TodoEntity[]> {
     return this.todoService.findPerPage(nb, page);
   }
-  @Get('stats/:status')
-  getnbTodosByStatus(@Param('status') status: TodoStatusEnum): Promise<number> {
-    return this.todoService.findByStatus(status);
-  }
+  //@Get('stats/:status')
+  //getnbTodosByStatus(@Param('status') status: TodoStatusEnum):Promise<number>{
+   // return this.todoService.findByStatus(status);
+  //}
   @Get('stats/:date1/:date2')
   getStats(
     @Param('date1') date1: Date,

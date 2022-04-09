@@ -7,6 +7,10 @@ import { devConfig } from './config/dev.config';
 import { prodConfig } from './config/prod.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TodoEntity } from './todo/Entity/todo.entity';
+import { UserModule } from './gestionnaireCV/user/user.module';
+import { CvModule } from './gestionnaireCV/cv/cv.module';
+import { SkillModule } from './gestionnaireCV/skill/skill.module';
+import { TiemstampEntity } from './generics/tiemstamp.entity';
 
 @Module({
   imports: [
@@ -26,6 +30,9 @@ import { TodoEntity } from './todo/Entity/todo.entity';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    UserModule,
+    CvModule,
+    SkillModule,
   ],
   controllers: [AppController],
   providers: [],

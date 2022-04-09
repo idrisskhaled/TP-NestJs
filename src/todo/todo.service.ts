@@ -7,6 +7,7 @@ import { DeleteResult } from 'typeorm/query-builder/result/DeleteResult';
 import { UpdateResult } from 'typeorm/query-builder/result/UpdateResult';
 import { SearchTodoDto } from './dto/search-todo.dto';
 import { TodoStatusEnum } from './enums/todo-status.enum';
+import { StatDTO } from './dto/stat-todo.dto';
 
 @Injectable()
 export class TodoService {
@@ -78,7 +79,6 @@ export class TodoService {
     }
     return this.todoRepository.find({ withDeleted: true });
   }
-
   findByStatus(status: TodoStatusEnum) {
     return this.todoRepository
       .createQueryBuilder('todo')
@@ -86,6 +86,13 @@ export class TodoService {
       .where({ status: status })
       .getCount();
   }
+
+  //getStatus():SelectQueryBuilder<TodoEntity>{
+    //return this.todoRepository
+      //.createQueryBuilder('todo')
+      //.select('status,count(*)')
+      //.groupBy('status');
+  //}
 
   async findByCreationDate(date1: Date, date2: Date): Promise<TodoEntity[]> {
     return await this.todoRepository
